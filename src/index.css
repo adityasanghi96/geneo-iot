@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@theme {
+  --color-category-netlogic: #7c3aed;
+  --color-category-motors: #0f766e;
+  --color-category-iot: #0e7490;
+  --color-category-display: #0369a1;
+  --color-category-logic: #0d9488;
+  --color-category-loops: #16a34a;
+  --color-category-math: #0891b2;
+  --color-category-text: #dc2626;
+  --color-category-lists: #991b1b;
+  --color-category-variables: #7c3aed;
+  --color-category-functions: #4338ca;
+  --color-category-timing: #0f766e;
+  --color-category-machine: #374151;
+  --color-category-files: #1f2937;
+  --color-category-network: #111827;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Blockly canvas fills its container */
+.blockly-div {
+  width: 100%;
+  height: 100%;
+}
+
+/* Blockly SVG override for theme */
+.blocklySvg {
+  background-color: #f9fafb !important;
+}
+
+/* ── Blockly toolbox 
+   .blocklyToolboxDiv = geras renderer  |  .blocklyToolbox = zelos fallback
+──────────────────────────────────────────────────────────────────── */
+
+.blocklyToolboxDiv,
+.blocklyToolbox {
+  width: 198px !important;
+  min-width: 198px !important;
+  border-right: 1px solid #d1d5db !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.blocklyToolboxContents {
+  padding: 0.5em !important;
+}
+
+.blocklyTreeRow {
+  padding: 3px !important;
+  margin-bottom: 0.5em !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: filter 0.12s !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.blocklyTreeRow:hover {
+  filter: brightness(1.12) !important;
+}
+
+/* Active / selected category */
+.blocklyTreeSelected {
+  filter: brightness(0.82) !important;
+  outline: 2px solid rgba(0, 0, 0, 0.22) !important;
+  outline-offset: -2px !important;
+}
+
+/* Row content container */
+.blocklyTreeRowContentContainer {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  padding-left: 4px !important;
+  border-left: none !important;
+}
+
+/* color: black */
+.blocklyTreeLabel {
+  color: #000000 !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 170px !important;
+}
+
+/* Hide Blockly's small default color-square icon (whole row bg = category color) */
+.blocklyTreeIcon {
+  display: none !important;
+}
+
+/* Sub-category indent */
+.blocklyTreeRow .blocklyTreeRow {
+  padding-left: 14px !important;
+  filter: brightness(0.88) !important;
+}
+
+/* ── Workspace scrollbar: only visible when flyout is open AND
+   Blockly says the content overflows (Blockly sets display:none otherwise).
+──────────────────────────────────────────────────────────────────── */
+
+.blocklyScrollbarBackground {
+  opacity: 0 !important;
+  transition: opacity 0.15s !important;
+}
+.blocklyScrollbarHandle {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.15s !important;
+}
+
+/* Show when flyout is open (class toggled by BlocklyWorkspace.tsx) */
+.flyout-open .blocklyScrollbarBackground {
+  opacity: 0.15 !important;
+}
+.flyout-open .blocklyScrollbarHandle {
+  opacity: 0.45 !important;
+  pointer-events: auto !important;
+}
+
+/* ── Shared form controls ───────────────────────────────────────── */
+.input-field {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #111827;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input-field:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+/* LED glow animation */
+@keyframes led-glow {
+  0%, 100% { box-shadow: 0 0 6px 2px currentColor; }
+  50% { box-shadow: 0 0 18px 6px currentColor; }
+}
+
+.led-on {
+  animation: led-glow 0.8s ease-in-out infinite;
+}
+
+/* Buzzer pulse */
+@keyframes buzzer-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.buzzer-on {
+  animation: buzzer-pulse 0.3s ease-in-out infinite;
+}
